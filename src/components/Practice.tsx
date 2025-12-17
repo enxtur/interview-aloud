@@ -14,6 +14,8 @@ export const Practice = ({ topic, onExit }: Props) => {
     speechRate: 0.95
   });
 
+  const progress = ((session.index + 1) / topic.sentences.length) * 100;
+
   // Keyboard shortcuts
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -37,35 +39,198 @@ export const Practice = ({ topic, onExit }: Props) => {
   }, [session, onExit]);
 
   return (
-    <div>
-      <button onClick={onExit}>← Back</button>
+    <div className="card" style={{ maxWidth: '800px', margin: '0 auto' }}>
+      {/* Header */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: '2rem',
+        }}
+      >
+        <button
+          className="btn btn-ghost"
+          onClick={onExit}
+          style={{ padding: '0.5rem 1rem' }}
+        >
+          ← Back to Topics
+        </button>
+        <div
+          style={{
+            fontSize: '0.875rem',
+            color: 'var(--color-text-secondary)',
+            fontWeight: 500,
+          }}
+        >
+          {session.index + 1} / {topic.sentences.length}
+        </div>
+      </div>
 
-      <h2>{topic.question}</h2>
+      {/* Progress Bar */}
+      <div className="progress-bar" style={{ marginBottom: '2rem' }}>
+        <div
+          className="progress-fill"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
 
-      <div style={{ fontSize: '1.6rem', margin: '2rem 0' }}>
+      {/* Question */}
+      <h2
+        style={{
+          fontSize: '1.75rem',
+          fontWeight: 600,
+          color: 'var(--color-text-primary)',
+          marginBottom: '2.5rem',
+          lineHeight: 1.4,
+        }}
+      >
+        {topic.question}
+      </h2>
+
+      {/* Current Sentence */}
+      <div
+        style={{
+          fontSize: '1.75rem',
+          lineHeight: 1.8,
+          color: 'var(--color-text-primary)',
+          marginBottom: '3rem',
+          padding: '2rem',
+          background: 'var(--color-bg-secondary)',
+          borderRadius: 'var(--radius-lg)',
+          border: '1px solid var(--color-border-light)',
+          minHeight: '120px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}
+      >
         {session.sentence}
       </div>
 
-      <div>
-        <button onClick={session.prev} disabled={session.isFirst}>
-          ◀ Prev
+      {/* Controls */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          justifyContent: 'center',
+          marginBottom: '2rem',
+          flexWrap: 'wrap',
+        }}
+      >
+        <button
+          className="btn btn-secondary"
+          onClick={session.prev}
+          disabled={session.isFirst}
+          style={{ minWidth: '120px' }}
+        >
+          ◀ Previous
         </button>
 
         <button
+          className="btn btn-primary"
           onClick={session.playCurrent}
           disabled={session.isSpeaking}
+          style={{ minWidth: '140px' }}
         >
-          ▶ Speak
+          {session.isSpeaking ? (
+            <>
+              <span style={{ display: 'inline-block', animation: 'pulse 1.5s ease-in-out infinite' }}>
+                🔊 Speaking...
+              </span>
+            </>
+          ) : (
+            <>▶ Speak</>
+          )}
         </button>
 
-        <button onClick={session.next} disabled={session.isLast}>
+        <button
+          className="btn btn-secondary"
+          onClick={session.next}
+          disabled={session.isLast}
+          style={{ minWidth: '120px' }}
+        >
           Next ▶
         </button>
       </div>
 
-      <p>
-        {session.index + 1} / {topic.sentences.length}
-      </p>
+      {/* Keyboard Shortcuts Hint */}
+      <div
+        style={{
+          padding: '1rem',
+          background: 'var(--color-bg-tertiary)',
+          borderRadius: 'var(--radius-md)',
+          fontSize: '0.875rem',
+          color: 'var(--color-text-secondary)',
+          display: 'flex',
+          gap: '1.5rem',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
+        <span>
+          <kbd
+            style={{
+              padding: '0.25rem 0.5rem',
+              background: 'var(--color-bg-primary)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-sm)',
+              fontFamily: 'monospace',
+              fontSize: '0.75rem',
+              marginRight: '0.5rem',
+            }}
+          >
+            Space
+          </kbd>
+          Play
+        </span>
+        <span>
+          <kbd
+            style={{
+              padding: '0.25rem 0.5rem',
+              background: 'var(--color-bg-primary)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-sm)',
+              fontFamily: 'monospace',
+              fontSize: '0.75rem',
+              marginRight: '0.5rem',
+            }}
+          >
+            ←
+          </kbd>
+          <kbd
+            style={{
+              padding: '0.25rem 0.5rem',
+              background: 'var(--color-bg-primary)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-sm)',
+              fontFamily: 'monospace',
+              fontSize: '0.75rem',
+              marginRight: '0.5rem',
+            }}
+          >
+            →
+          </kbd>
+          Navigate
+        </span>
+        <span>
+          <kbd
+            style={{
+              padding: '0.25rem 0.5rem',
+              background: 'var(--color-bg-primary)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-sm)',
+              fontFamily: 'monospace',
+              fontSize: '0.75rem',
+              marginRight: '0.5rem',
+            }}
+          >
+            Esc
+          </kbd>
+          Exit
+        </span>
+      </div>
     </div>
   );
 };

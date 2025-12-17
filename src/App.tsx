@@ -8,7 +8,7 @@ export default function App() {
   const [activeTopic, setActiveTopic] = useState<Topic | null>(null);
 
   return (
-    <div style={{ maxWidth: 700, margin: "0 auto", padding: "2rem" }}>
+    <div className="page-container">
       {!activeTopic && <TopicList topics={topics} onSelect={setActiveTopic} />}
 
       {activeTopic && (
