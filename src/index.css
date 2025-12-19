@@ -299,49 +299,76 @@ body {
   }
 }
 
-/* GitHub Link */
-.github-link {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 1000;
+/* GitHub Link & Badges */
+.github-link-container {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-lg);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: var(--spacing-lg);
+}
+
+.github-link,
+.badge-chip,
+.contribute-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 20px;
+  padding: 0;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  background: none;
+  box-shadow: none;
   color: var(--color-text-primary);
   text-decoration: none;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  transition: all var(--transition-base);
+  border-radius: 0;
+  border: none;
+  transition: opacity var(--transition-base);
   font-size: 0.875rem;
   font-weight: 500;
   font-family: var(--font-family);
 }
 
-.github-link:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-xl);
-  background: rgba(255, 255, 255, 1);
-  color: var(--color-primary);
-  border-color: var(--color-primary);
+.github-link:hover,
+.contribute-link:hover {
+  opacity: 0.8;
 }
 
-.github-link-text {
-  display: none;
+.badge-chip:hover {
+  opacity: 0.8;
 }
 
-@media (min-width: 640px) {
-  .github-link-text {
-    display: inline;
-  }
+.badge-chip {
+  padding: 0;
+  width: auto;
+  height: 20px;
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+.github-link {
+  border: 1px solid var(--color-border);
+  padding: 0 0.5rem;
+  border-radius: var(--radius-md);
+}
+
+.contribute-link {
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  padding: 0 0.5rem;
+  border-radius: var(--radius-md);
 }
 
 @media (max-width: 639px) {
-  .github-link {
-    padding: 0.75rem;
+  .github-link-container {
+    gap: 0.4rem;
   }
 }
