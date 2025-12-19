@@ -24,7 +24,8 @@ export const TopicList = ({ topics, onSelect }: Props) => {
       <div style={{ marginBottom: "3rem" }}>
         <h1 className="hero-title">Interview Practice</h1>
         <p className="hero-subtitle">
-          Master your interview answers with guided practice sessions
+          Built for engineers who know the answers but struggle to say them
+          clearly under interview pressure.
         </p>
       </div>
 
@@ -47,7 +48,14 @@ export const TopicList = ({ topics, onSelect }: Props) => {
             }}
             onClick={() => onSelect(topic)}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                flexWrap: "wrap",
+              }}
+            >
               <h2
                 style={{
                   fontSize: "1.5rem",
