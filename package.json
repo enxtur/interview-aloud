@@ -1,15 +1,16 @@
 {
   "name": "interview-aloud",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve@latest out",
     "lint": "eslint"
   },
   "dependencies": {
+    "@next/third-parties": "^16.1.0",
     "next": "16.1.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
