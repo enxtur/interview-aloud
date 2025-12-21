@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Install dependencies with optimizations
-RUN npm ci --ignore-scripts && \
+RUN npm ci && \
     npm cache clean --force
 
 # Copy all source code for building
@@ -19,4 +19,5 @@ RUN npm run build
 # Final stage
 FROM nginx:1.28.0-alpine
 
-COPY --from=base /app/dist /usr/share/nginx/html
+COPY --from=base /app/out /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
