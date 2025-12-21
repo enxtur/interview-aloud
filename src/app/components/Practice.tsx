@@ -1,13 +1,15 @@
+"use client";
+import type { Topic } from "@/app/data/types";
+import { useSessionFlow } from "@/app/hooks/useSessionFlow";
+import { useRouter } from "next/navigation";
 import * as React from "react";
-import type { Topic } from "../data/types";
-import { useSessionFlow } from "../hooks/useSessionFlow";
 
 interface Props {
   topic: Topic;
-  onExit: () => void;
 }
 
-export const Practice = ({ topic, onExit }: Props) => {
+export const Practice = ({ topic }: Props) => {
+  const router = useRouter();
   const session = useSessionFlow(topic, {
     autoAdvance: true,
     pauseAfterMs: 4000,
@@ -30,13 +32,13 @@ export const Practice = ({ topic, onExit }: Props) => {
         session.prev();
       }
       if (e.code === "Escape") {
-        onExit();
+        router.push("/");
       }
     };
 
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [session, onExit]);
+    window?.addEventListener("keydown", handler);
+    return () => window?.removeEventListener("keydown", handler);
+  }, [session, router]);
 
   return (
     <div className="card" style={{ maxWidth: "800px", margin: "0 auto" }}>
@@ -51,7 +53,7 @@ export const Practice = ({ topic, onExit }: Props) => {
       >
         <button
           className="btn btn-ghost"
-          onClick={onExit}
+          onClick={() => router.push("/")}
           style={{ padding: "0.5rem 1rem" }}
         >
           ← Back to Topics

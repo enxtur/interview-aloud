@@ -1,8 +1,8 @@
-import type { Topic } from "../data/types";
+import type { Topic } from "@/app/data/types";
+import Link from "next/link";
 
 interface Props {
   topics: Topic[];
-  onSelect: (topic: Topic) => void;
 }
 
 const getDifficultyColor = (difficulty: string) => {
@@ -18,7 +18,7 @@ const getDifficultyColor = (difficulty: string) => {
   }
 };
 
-export const TopicList = ({ topics, onSelect }: Props) => {
+export const TopicList = ({ topics }: Props) => {
   return (
     <div>
       <div style={{ marginBottom: "3rem" }}>
@@ -37,81 +37,79 @@ export const TopicList = ({ topics, onSelect }: Props) => {
         }}
       >
         {topics.map((topic) => (
-          <div
-            key={topic.id}
-            className="card"
-            style={{
-              cursor: "pointer",
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-            }}
-            onClick={() => onSelect(topic)}
-          >
+          <Link href={`/topics/${topic.id}`} key={topic.id}>
             <div
+              className="card"
               style={{
+                cursor: "pointer",
                 display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-                flexWrap: "wrap",
+                flexDirection: "column",
+                gap: "1rem",
               }}
             >
-              <h2
-                style={{
-                  fontSize: "1.5rem",
-                  fontWeight: 600,
-                  color: "var(--color-text-primary)",
-                  flex: 1,
-                  minWidth: 0,
-                }}
-              >
-                {topic.title}
-              </h2>
-              <span className={`chip ${getDifficultyColor(topic.difficulty)}`}>
-                {topic.difficulty}
-              </span>
-            </div>
-
-            <p
-              style={{
-                fontSize: "1rem",
-                color: "var(--color-text-secondary)",
-                lineHeight: 1.6,
-                flex: 1,
-              }}
-            >
-              {topic.question}
-            </p>
-
-            {topic.tags && topic.tags.length > 0 && (
               <div
                 style={{
                   display: "flex",
-                  gap: "0.5rem",
+                  alignItems: "center",
+                  gap: "0.75rem",
                   flexWrap: "wrap",
-                  paddingTop: "0.5rem",
-                  borderTop: "1px solid var(--color-border-light)",
                 }}
               >
-                {topic.tags.map((tag) => (
-                  <span key={tag} className="chip">
-                    {tag}
-                  </span>
-                ))}
+                <h2
+                  style={{
+                    fontSize: "1.5rem",
+                    fontWeight: 600,
+                    color: "var(--color-text-primary)",
+                    flex: 1,
+                    minWidth: 0,
+                  }}
+                >
+                  {topic.title}
+                </h2>
+                <span
+                  className={`chip ${getDifficultyColor(topic.difficulty)}`}
+                >
+                  {topic.difficulty}
+                </span>
               </div>
-            )}
 
-            <button
-              className="btn btn-primary"
-              style={{ marginTop: "auto", width: "100%" }}
-              onClick={(e) => {
-                e.stopPropagation();
-                onSelect(topic);
-              }}
-            >
-              Start Practice →
-            </button>
-          </div>
+              <p
+                style={{
+                  fontSize: "1rem",
+                  color: "var(--color-text-secondary)",
+                  lineHeight: 1.6,
+                  flex: 1,
+                }}
+              >
+                {topic.question}
+              </p>
+
+              {topic.tags && topic.tags.length > 0 && (
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "0.5rem",
+                    flexWrap: "wrap",
+                    paddingTop: "0.5rem",
+                    borderTop: "1px solid var(--color-border-light)",
+                  }}
+                >
+                  {topic.tags.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <button
+                className="btn btn-primary"
+                style={{ marginTop: "auto", width: "100%" }}
+              >
+                Start Practice →
+              </button>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
