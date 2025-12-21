@@ -1,5 +1,5 @@
 // src/hooks/useSessionFlow.ts
-import { useCallback, useEffect, useState } from "react";
+import * as React from "react";
 import type { Topic } from "../data/types";
 import { useSpeech } from "./useSpeech";
 
@@ -14,31 +14,31 @@ export const useSessionFlow = (topic: Topic, options: SessionOptions = {}) => {
 
   const { speak, stop, isSpeaking } = useSpeech();
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = React.useState(0);
 
   const sentence = topic.sentences[index];
   const isFirst = index === 0;
   const isLast = index === topic.sentences.length - 1;
 
-  const playCurrent = useCallback(() => {
+  const playCurrent = React.useCallback(() => {
     speak(sentence, { rate: speechRate });
   }, [sentence, speechRate, speak]);
 
-  const next = useCallback(() => {
+  const next = React.useCallback(() => {
     setIndex((i) => Math.min(i + 1, topic.sentences.length - 1));
   }, [topic.sentences.length]);
 
-  const prev = useCallback(() => {
+  const prev = React.useCallback(() => {
     setIndex((i) => Math.max(i - 1, 0));
   }, []);
 
-  const reset = useCallback(() => {
+  const reset = React.useCallback(() => {
     stop();
     setIndex(0);
   }, [stop]);
 
   // Auto-advance after speaking finishes
-  useEffect(() => {
+  React.useEffect(() => {
     if (!autoAdvance || isSpeaking || isLast) return;
 
     const timer = setTimeout(() => {

@@ -1,12 +1,13 @@
-import { useState } from "react";
+"use client";
+import * as React from "react";
 import { Practice } from "./components/Practice";
 import { TopicList } from "./components/TopicList";
 import { GithubLink } from "./components/GithubLink";
 import { topics } from "./data/topics";
 import type { Topic } from "./data/types";
 
-export default function App() {
-  const [activeTopic, setActiveTopic] = useState<Topic | null>(null);
+export default function Home() {
+  const [activeTopic, setActiveTopic] = React.useState<Topic | null>(null);
 
   return (
     <div className="page-container">
