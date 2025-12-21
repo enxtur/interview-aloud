@@ -7,4 +7,5 @@ export interface Topic {
   sentences: string[];
   tags?: string[];
   difficulty: "easy" | "medium" | "hard";
+  keywords: string[];
 }
