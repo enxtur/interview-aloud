@@ -1,4 +1,4 @@
-import type { Topic } from "./types";
+import type { Topic } from "@/app/data/types";
 
 export const topics: Topic[] = [
   {
@@ -14,6 +14,15 @@ export const topics: Topic[] = [
     ],
     tags: ["database", "transaction"],
     difficulty: "easy",
+    keywords: [
+      "ACID",
+      "Atomicity",
+      "Consistency",
+      "Isolation",
+      "Durability",
+      "Database",
+      "Transaction",
+    ],
   },
   {
     id: "node-streams",
@@ -29,6 +38,14 @@ export const topics: Topic[] = [
     ],
     tags: ["nodejs"],
     difficulty: "easy",
+    keywords: [
+      "Node.js",
+      "Streams",
+      "Readable",
+      "Writable",
+      "Duplex",
+      "Transform",
+    ],
   },
   {
     id: "hashing-vs-encryption",
@@ -45,6 +62,7 @@ export const topics: Topic[] = [
     ],
     tags: ["security", "cryptography"],
     difficulty: "easy",
+    keywords: ["Hashing", "Encryption", "Security", "Cryptography"],
   },
   {
     id: "agile-development",
@@ -60,11 +78,22 @@ export const topics: Topic[] = [
     ],
     tags: ["process", "agile"],
     difficulty: "easy",
+    keywords: [
+      "Agile",
+      "Development",
+      "Iterative",
+      "Collaboration",
+      "Documentation",
+      "Change",
+      "Scrum",
+      "Kanban",
+    ],
   },
   {
     id: "authentication-vs-authorization",
     title: "Authentication vs Authorization",
-    question: "What is the difference between authentication and authorization?",
+    question:
+      "What is the difference between authentication and authorization?",
     sentences: [
       "Authentication is the process of verifying who a user is.",
       "Authorization determines what an authenticated user is allowed to do.",
@@ -75,6 +104,14 @@ export const topics: Topic[] = [
     ],
     tags: ["security", "auth"],
     difficulty: "easy",
+    keywords: [
+      "Authentication",
+      "Authorization",
+      "Security",
+      "Authentication vs Authorization",
+      "Role",
+      "Permission",
+    ],
   },
   {
     id: "rest-api-best-practices",
@@ -90,6 +127,18 @@ export const topics: Topic[] = [
     ],
     tags: ["api", "rest"],
     difficulty: "medium",
+    keywords: [
+      "REST",
+      "API",
+      "Best Practices",
+      "Resource-based URLs",
+      "HTTP Methods",
+      "Status Codes",
+      "Authentication",
+      "Authorization",
+      "Validation",
+      "Error Handling",
+    ],
   },
   {
     id: "transactions",
@@ -104,6 +153,7 @@ export const topics: Topic[] = [
     ],
     tags: ["database", "transaction"],
     difficulty: "easy",
+    keywords: ["Transaction", "Database", "ACID", "Integrity", "Consistency"],
   },
   {
     id: "node-event-loop",
@@ -118,6 +168,21 @@ export const topics: Topic[] = [
     ],
     tags: ["nodejs", "event-loop"],
     difficulty: "medium",
+    keywords: [
+      "Event Loop",
+      "Node.js",
+      "Asynchronous",
+      "Callbacks",
+      "Promises",
+      "Concurrency",
+      "Thread",
+      "Phase",
+      "Non-blocking",
+      "Blocking",
+      "Event-driven",
+      "Single-threaded",
+      "Multi-threaded",
+    ],
   },
   {
     id: "security-best-practices",
@@ -133,6 +198,15 @@ export const topics: Topic[] = [
     ],
     tags: ["security"],
     difficulty: "medium",
+    keywords: [
+      "Security",
+      "Best Practices",
+      "Validation",
+      "Sanitization",
+      "Hashing",
+      "Authentication",
+      "Authorization",
+    ],
   },
   {
     id: "jwt-pros-cons",
@@ -148,6 +222,15 @@ export const topics: Topic[] = [
     ],
     tags: ["security", "jwt"],
     difficulty: "medium",
+    keywords: [
+      "JWT",
+      "Pros",
+      "Cons",
+      "Stateless",
+      "Authentication",
+      "Authorization",
+      "Token",
+    ],
   },
   {
     id: "idempotency",
@@ -162,6 +245,13 @@ export const topics: Topic[] = [
     ],
     tags: ["api", "reliability"],
     difficulty: "medium",
+    keywords: [
+      "Idempotency",
+      "API",
+      "Reliability",
+      "Side Effects",
+      "Distributed Systems",
+    ],
   },
   {
     id: "horizontal-vs-vertical-scaling",
@@ -176,5 +266,13 @@ export const topics: Topic[] = [
     ],
     tags: ["scalability", "architecture"],
     difficulty: "medium",
+    keywords: [
+      "Horizontal",
+      "Vertical",
+      "Scaling",
+      "Physical Limits",
+      "Fault Tolerance",
+      "Modern Systems",
+    ],
   },
 ];
