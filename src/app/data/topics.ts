@@ -1,4 +1,4 @@
-import type { Topic } from "./types";
+import type { Topic } from "@/app/data/types";
 
 export const topics: Topic[] = [
   {
@@ -64,7 +64,8 @@ export const topics: Topic[] = [
   {
     id: "authentication-vs-authorization",
     title: "Authentication vs Authorization",
-    question: "What is the difference between authentication and authorization?",
+    question:
+      "What is the difference between authentication and authorization?",
     sentences: [
       "Authentication is the process of verifying who a user is.",
       "Authorization determines what an authenticated user is allowed to do.",
