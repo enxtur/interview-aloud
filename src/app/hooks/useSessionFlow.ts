@@ -1,7 +1,7 @@
-// src/hooks/useSessionFlow.ts
+"use client";
 import * as React from "react";
-import type { Topic } from "../data/types";
-import { useSpeech } from "./useSpeech";
+import type { Topic } from "@/app/data/types";
+import { useSpeech } from "@/app/hooks/useSpeech";
 
 interface SessionOptions {
   autoAdvance?: boolean;

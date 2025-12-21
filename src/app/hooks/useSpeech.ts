@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 
 interface SpeakOptions {
@@ -8,14 +9,14 @@ interface SpeakOptions {
 }
 
 export const useSpeech = () => {
-  const synth = window.speechSynthesis;
+  const synth = typeof window !== "undefined" ? window.speechSynthesis : null;
 
   const queueRef = React.useRef<SpeechSynthesisUtterance[]>([]);
   const [isSpeaking, setIsSpeaking] = React.useState(false);
 
   const speak = React.useCallback(
     (text: string, options: SpeakOptions = {}) => {
-      if (!text) return;
+      if (!text || !synth) return;
 
       synth.cancel(); // stop anything currently speaking
 
@@ -40,7 +41,7 @@ export const useSpeech = () => {
 
   const speakSequence = React.useCallback(
     (sentences: string[], options: SpeakOptions = {}) => {
-      if (!sentences.length) return;
+      if (!sentences.length || !synth) return;
 
       synth.cancel();
       queueRef.current = [];
@@ -71,6 +72,7 @@ export const useSpeech = () => {
   );
 
   const stop = React.useCallback(() => {
+    if (!synth) return;
     synth.cancel();
     setIsSpeaking(false);
   }, [synth]);
