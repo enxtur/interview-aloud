@@ -37,7 +37,11 @@ export const TopicList = ({ topics }: Props) => {
         }}
       >
         {topics.map((topic) => (
-          <Link href={`/topics/${topic.id}`} key={topic.id}>
+          <Link
+            href={`/topics/${topic.id}`}
+            key={topic.id}
+            style={{ display: "flex", height: "100%" }}
+          >
             <div
               className="card"
               style={{
@@ -45,6 +49,8 @@ export const TopicList = ({ topics }: Props) => {
                 display: "flex",
                 flexDirection: "column",
                 gap: "1rem",
+                width: "100%",
+                height: "100%",
               }}
             >
               <div
