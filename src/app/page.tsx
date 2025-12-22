@@ -1,4 +1,4 @@
-import { GithubLink } from "@/app/components/GithubLink";
+import { Header } from "@/app/components/Header";
 import { TopicList } from "@/app/components/TopicList";
 import { topics } from "@/app/data/topics";
 import { Metadata } from "next";
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="page-container">
-      <GithubLink />
+      <Header />
       <TopicList topics={topics} />
     </div>
   );
