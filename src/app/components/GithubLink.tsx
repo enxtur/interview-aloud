@@ -1,3 +1,5 @@
+import { Tweet } from "@/app/components/Tweet";
+
 export const GithubLink = () => {
   return (
     <div className="github-link-container">
@@ -23,6 +25,7 @@ export const GithubLink = () => {
       >
         Contribute
       </a>
+      <Tweet />
     </div>
   );
 };
