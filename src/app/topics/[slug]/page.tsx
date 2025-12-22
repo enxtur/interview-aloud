@@ -1,4 +1,4 @@
-import { GithubLink } from "@/app/components/GithubLink";
+import { Header } from "@/app/components/Header";
 import { Practice } from "@/app/components/Practice";
 import { topics } from "@/app/data/topics";
 import type { Topic } from "@/app/data/types";
@@ -55,7 +55,7 @@ export default async function TopicPage({
   }
   return (
     <div className="page-container">
-      <GithubLink />
+      <Header />
       <Practice topic={topic} />
     </div>
   );

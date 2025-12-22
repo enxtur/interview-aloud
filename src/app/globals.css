@@ -299,76 +299,97 @@ body {
   }
 }
 
-/* GitHub Link & Badges */
-.github-link-container {
+/* Header */
+.header-container {
   display: flex;
-  align-items: stretch;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
   width: 100%;
   margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
 }
 
-.github-link,
-.badge-chip,
-.contribute-link {
-  display: inline-flex;
+.header-badges {
+  display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
-  height: 20px;
-  padding: 0;
-  flex: 0 0 auto;
-  box-sizing: border-box;
-  background: none;
-  box-shadow: none;
-  color: var(--color-text-primary);
-  text-decoration: none;
-  border-radius: 0;
-  border: none;
-  transition: opacity var(--transition-base);
-  font-size: 0.875rem;
-  font-weight: 500;
-  font-family: var(--font-family);
+  flex-wrap: wrap;
 }
 
-.github-link:hover,
-.contribute-link:hover {
-  opacity: 0.8;
-}
-
-.badge-chip:hover {
-  opacity: 0.8;
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-left: auto;
 }
 
 .badge-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
   padding: 0;
   width: auto;
-  height: 20px;
   max-width: 100%;
   cursor: pointer;
   border-radius: 0;
   border: none;
   background: none;
   box-shadow: none;
+  transition: opacity var(--transition-base);
+  flex: 0 0 auto;
+  box-sizing: border-box;
 }
 
-.github-link {
-  border: 1px solid var(--color-border);
-  padding: 0 0.5rem;
-  border-radius: var(--radius-md);
+.badge-chip:hover {
+  opacity: 0.8;
 }
 
-.contribute-link {
+.header-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 32px;
+  padding: 0 var(--spacing-md);
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all var(--transition-base);
+  font-size: 0.875rem;
   font-weight: 600;
-  border: 1px solid var(--color-border);
-  padding: 0 0.5rem;
-  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  white-space: nowrap;
+}
+
+.header-button:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.header-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 @media (max-width: 639px) {
-  .github-link-container {
+  .header-container {
+    gap: 0.4rem;
+  }
+
+  .header-badges,
+  .header-actions {
     gap: 0.4rem;
   }
 }
