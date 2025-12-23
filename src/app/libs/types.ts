@@ -5,7 +5,7 @@ export interface Topic {
   title: string;
   question: string;
   sentences: string[];
-  tags?: string[];
+  tags: string[];
   difficulty: "easy" | "medium" | "hard";
   keywords: string[];
 }
