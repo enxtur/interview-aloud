@@ -1,29 +1,32 @@
-import { topics } from "@/app/data/topics";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import "./globals.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { loadTopics } from "./libs/loadTopics";
 
 const url = "https://interview-aloud.tech";
 const title = "Interview Aloud - Practice Technical Interview Answers Out Loud";
 const description =
   "Practice technical interview answers out loud with curated questions and sentence-by-sentence text-to-speech. Keyboard-friendly, distraction-free, no accounts or tracking required.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  keywords: topics.map((topic) => topic.question),
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const topics = await loadTopics();
+  return {
     title,
     description,
-    type: "website",
-    url,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-  },
-};
+    keywords: topics.map((topic) => topic.question),
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
 
 export default function RootLayout({
   children,

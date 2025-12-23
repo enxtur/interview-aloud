@@ -24,8 +24,8 @@ export const Tweet = () => {
       rel="noopener noreferrer"
       className="header-button"
     >
+      Share on
       <XLogo />
-      Share on X
     </a>
   );
 };

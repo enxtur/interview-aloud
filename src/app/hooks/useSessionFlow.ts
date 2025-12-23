@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import type { Topic } from "@/app/data/types";
+import type { Topic } from "@/app/libs/types";
 import { useSpeech } from "@/app/hooks/useSpeech";
 
 interface SessionOptions {

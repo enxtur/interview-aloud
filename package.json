@@ -1,7 +1,7 @@
 {
   "name": "interview-aloud",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.3.0",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -23,6 +23,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.0",
+    "gray-matter": "^4.0.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

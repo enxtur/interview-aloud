@@ -1,22 +1,26 @@
-import { topics } from "@/app/data/topics";
 import type { MetadataRoute } from "next";
+import { loadTopics } from "./libs/loadTopics";
 
 export const dynamic = "force-static";
 
 const now = new Date();
 
-export default function sitemap(): MetadataRoute.Sitemap {
+const changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] =
+  "weekly";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const topics = await loadTopics();
   return [
     {
       url: "https://interview-aloud.tech/",
       lastModified: now,
-      changeFrequency: "monthly",
+      changeFrequency,
       priority: 1,
     },
     ...topics.map((topic) => ({
       url: `https://interview-aloud.tech/topics/${topic.id}`,
       lastModified: now,
-      changeFrequency: "weekly" as const,
+      changeFrequency,
       priority: 0.8,
     })),
   ];
