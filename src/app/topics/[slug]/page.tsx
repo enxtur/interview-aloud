@@ -1,15 +1,10 @@
 import { Header } from "@/app/components/Header";
 import { Practice } from "@/app/components/Practice";
-import { topics } from "@/app/data/topics";
-import type { Topic } from "@/app/data/types";
+import { loadTopicMap } from "@/app/libs/loadTopics";
 import { notFound } from "next/navigation";
 
-const topicsById = new Map<string, Topic>(
-  topics.map((topic) => [topic.id, topic])
-);
-
-export function generateStaticParams() {
-  return topics.map((topic) => ({ slug: topic.id }));
+export async function generateStaticParams() {
+  return [...(await loadTopicMap()).keys()].map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -18,7 +13,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const topic = topicsById.get(slug);
+  const topic = (await loadTopicMap()).get(slug);
   if (!topic) {
     notFound();
   }
@@ -49,7 +44,7 @@ export default async function TopicPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const topic = topicsById.get(slug);
+  const topic = (await loadTopicMap()).get(slug);
   if (!topic) {
     notFound();
   }

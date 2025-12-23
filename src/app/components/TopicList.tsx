@@ -1,4 +1,4 @@
-import type { Topic } from "@/app/data/types";
+import type { Topic } from "@/app/libs/types";
 import Link from "next/link";
 
 interface Props {

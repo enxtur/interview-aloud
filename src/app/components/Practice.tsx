@@ -1,5 +1,5 @@
 "use client";
-import type { Topic } from "@/app/data/types";
+import type { Topic } from "@/app/libs/types";
 import { useSessionFlow } from "@/app/hooks/useSessionFlow";
 import { useRouter } from "next/navigation";
 import * as React from "react";
