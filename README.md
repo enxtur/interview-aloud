@@ -40,14 +40,14 @@
    npm run dev
    ```
 
-4. Open your browser and navigate to the URL shown in your terminal (usually `http://localhost:5173`)
+4. Open your browser and navigate to the URL shown in your terminal (usually `http://localhost:3000`)
 
 ## Available Scripts
 
 - `npm run dev` - Start the development server with hot reload
 - `npm run build` - Build the project for production
+- `npm run start` - Start the production server
 - `npm run lint` - Run ESLint to check code quality
-- `npm run preview` - Preview the production build locally
 
 ## Usage
 
@@ -84,46 +84,62 @@ The app automatically advances to the next sentence after a short pause, helping
 ```
 interview-aloud/
 ├── src/
-│   ├── components/      # React components
-│   │   ├── Practice.tsx      # Practice session component
-│   │   ├── TopicList.tsx     # Topic selection component
-│   │   └── GithubLink.tsx    # GitHub repository link
-│   ├── data/            # Application data
-│   │   ├── topics.ts         # Interview topics and answers
-│   │   └── types.ts          # TypeScript type definitions
-│   ├── hooks/           # Custom React hooks
-│   │   ├── useSessionFlow.ts # Practice session flow logic
-│   │   └── useSpeech.ts      # Text-to-speech functionality
-│   ├── App.tsx          # Main application component
-│   ├── main.tsx         # Application entry point
-│   └── index.css        # Global styles
+│   └── app/
+│       ├── components/      # React components
+│       ├── data/            # Interview topics (markdown files)
+│       │   └── *.md         # Topic files with frontmatter
+│       ├── hooks/           # Custom React hooks
+│       ├── libs/            # Utility functions and types
+│       ├── layout.tsx       # Root layout
+│       ├── page.tsx         # Homepage
+│       ├── topics/          # Topic pages (dynamic routes)
+│       ├── globals.css      # Global styles
+│       └── sitemap.ts       # Sitemap generator
 ├── public/              # Static assets
-│   └── sitemap.xml      # SEO sitemap
 └── package.json         # Project dependencies and scripts
 ```
 
 ## Data Model
 
-Topics are defined in `src/data/topics.ts` using the following structure:
+Topics are stored as markdown files in `src/app/data/` using frontmatter for metadata and the body for answer sentences.
 
-```typescript
-interface Topic {
-  id: string;              // Unique identifier (kebab-case)
-  title: string;           // Display title
-  question: string;        // The interview question
-  sentences: string[];     // Answer broken into sentences (3-8 sentences)
-  tags?: string[];         // Optional tags for categorization
-  difficulty: "easy" | "medium" | "hard";
-}
+Each topic file (`*.md`) follows this structure:
+
+```markdown
+---
+id: topic-slug
+title: Topic Title
+question: What is the interview question?
+tags: [tag1, tag2]
+difficulty: easy | medium | hard
+keywords: [Keyword1, Keyword2]
+---
+First sentence of the answer.
+Second sentence of the answer.
+Third sentence of the answer.
 ```
+
+**Frontmatter fields:**
+- `id` - Unique identifier in kebab-case (used as URL slug)
+- `title` - Display title
+- `question` - The interview question
+- `tags` - Array of tags for categorization
+- `difficulty` - One of "easy", "medium", or "hard"
+- `keywords` - Array of keywords for search
+
+**Body:**
+- Each line represents one sentence of the answer (3-8 sentences total)
+- Sentences are separated by newlines
 
 ### Adding New Topics
 
 To add a new interview topic:
 
-1. Open `src/data/topics.ts`
-2. Add a new topic object to the `topics` array
-3. Follow the existing structure and guidelines:
+1. Create a new markdown file in `src/app/data/` (e.g., `my-topic.md`)
+2. Use a unique filename that matches your topic's slug (kebab-case)
+3. Add frontmatter with all required fields
+4. Write answer sentences in the body (one per line)
+5. Follow the existing structure and guidelines:
    - Keep answers concise (3-8 sentences)
    - Write in a conversational, interview-friendly tone
    - Ensure each sentence can stand alone when read aloud
@@ -134,9 +150,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding topics 
 
 ## Technology Stack
 
+- **Next.js 16** - React framework with app router
 - **React 19** - UI framework
 - **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
 - **Web Speech API** - Browser text-to-speech
 
