@@ -13,17 +13,27 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-    keywords: topics.map((topic) => topic.question),
+    keywords: topics.map((topic) => topic.question).slice(0, 5),
     openGraph: {
       title,
       description,
       type: "website",
       url,
+      images: {
+        url: "https://interview-aloud.tech/opengraph-image.png",
+        width: 873,
+        height: 783,
+      },
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: {
+        url: "https://interview-aloud.tech/opengraph-image.png",
+        width: 873,
+        height: 783,
+      },
     },
   };
 }
