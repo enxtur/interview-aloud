@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const topics = await loadTopics();
   return [
     {
-      url: "https://interview-aloud.tech/",
+      url: "https://interview-aloud.tech",
       lastModified: now,
       changeFrequency,
       priority: 1,
