@@ -30,9 +30,9 @@ export async function generateMetadata({
       type: "website",
       url,
       images: {
-        url: "https://interview-aloud.tech/opengraph-image.png",
-        width: 873,
-        height: 783,
+        url: `https://interview-aloud.tech/og-images/${topic.id}.png`,
+        width: 1200,
+        height: 630,
       },
     },
     twitter: {
@@ -40,9 +40,9 @@ export async function generateMetadata({
       title,
       description,
       images: {
-        url: "https://interview-aloud.tech/opengraph-image.png",
-        width: 873,
-        height: 783,
+        url: `https://interview-aloud.tech/og-images/${topic.id}.png`,
+        width: 1200,
+        height: 630,
       },
     },
   };
