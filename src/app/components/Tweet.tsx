@@ -1,8 +1,10 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 const tweetText = encodeURIComponent(
   "Practicing technical interviews by speaking answers out loud.\nInterview Aloud — free & open source."
 );
-
-const tweetUrl = encodeURIComponent("https://interview-aloud.tech");
 
 const XLogo = () => (
   <svg
@@ -17,6 +19,10 @@ const XLogo = () => (
 );
 
 export const Tweet = () => {
+  const pathname = usePathname();
+  const tweetUrl = encodeURIComponent(
+    `https://interview-aloud.tech${pathname}`
+  );
   return (
     <a
       href={`https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`}
