@@ -1,6 +1,6 @@
 ---
 id: how-event-loop-works
-title: Node.js Event Loop
+title: How the Node.js Event Loop Works
 question: How does the Node.js event loop work?
 tags: [nodejs, javascript, concurrency]
 difficulty: medium
