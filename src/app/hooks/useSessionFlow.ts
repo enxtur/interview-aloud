@@ -19,8 +19,12 @@ export const useSessionFlow = (topic: Topic, options: SessionOptions = {}) => {
   const isLast = index === topic.sentences.length - 1;
 
   const playCurrent = React.useCallback(() => {
+    if (isSpeaking) {
+      stop();
+      return;
+    }
     speak(sentence, { rate: speechRate });
-  }, [sentence, speechRate, speak]);
+  }, [sentence, speechRate, speak, isSpeaking, stop]);
 
   const next = React.useCallback(() => {
     setIndex((i) => Math.min(i + 1, topic.sentences.length - 1));
