@@ -11,8 +11,6 @@ interface Props {
 export const Practice = ({ topic }: Props) => {
   const router = useRouter();
   const session = useSessionFlow(topic, {
-    autoAdvance: true,
-    pauseAfterMs: 4000,
     speechRate: 0.95,
   });
 
