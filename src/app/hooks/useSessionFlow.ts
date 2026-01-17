@@ -4,13 +4,11 @@ import type { Topic } from "@/app/libs/types";
 import { useSpeech } from "@/app/hooks/useSpeech";
 
 interface SessionOptions {
-  autoAdvance?: boolean;
-  pauseAfterMs?: number; // silence time after each sentence
   speechRate?: number;
 }
 
 export const useSessionFlow = (topic: Topic, options: SessionOptions = {}) => {
-  const { autoAdvance = false, pauseAfterMs = 3000, speechRate = 1 } = options;
+  const { speechRate = 1 } = options;
 
   const { speak, stop, isSpeaking } = useSpeech();
 
@@ -36,17 +34,6 @@ export const useSessionFlow = (topic: Topic, options: SessionOptions = {}) => {
     stop();
     setIndex(0);
   }, [stop]);
-
-  // Auto-advance after speaking finishes
-  React.useEffect(() => {
-    if (!autoAdvance || isSpeaking || isLast) return;
-
-    const timer = setTimeout(() => {
-      next();
-    }, pauseAfterMs);
-
-    return () => clearTimeout(timer);
-  }, [autoAdvance, isSpeaking, isLast, next, pauseAfterMs]);
 
   return {
     index,
