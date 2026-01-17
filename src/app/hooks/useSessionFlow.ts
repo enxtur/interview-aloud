@@ -30,11 +30,6 @@ export const useSessionFlow = (topic: Topic, options: SessionOptions = {}) => {
     setIndex((i) => Math.max(i - 1, 0));
   }, []);
 
-  const reset = React.useCallback(() => {
-    stop();
-    setIndex(0);
-  }, [stop]);
-
   return {
     index,
     sentence,
@@ -43,7 +38,6 @@ export const useSessionFlow = (topic: Topic, options: SessionOptions = {}) => {
     playCurrent,
     next,
     prev,
-    reset,
     isSpeaking,
   };
 };
