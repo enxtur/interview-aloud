@@ -42,3 +42,7 @@ next-env.d.ts
 
 public/og-images/*
 !public/og-images/.gitkeep
+
+# Google cloud service account keys
+service-account-key.json
+service-account-key-base64.txt
