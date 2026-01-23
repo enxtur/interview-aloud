@@ -1,12 +1,13 @@
 {
   "name": "interview-aloud",
   "private": true,
-  "version": "0.4.4",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "generate:og:images": "tsx src/scripts/generate-og-images.ts",
-    "build": "npm run generate:og:images && next build",
+    "generate:speech": "tsx src/scripts/generate-speech.ts",
+    "build": "npm run generate:og:images && npm run generate:speech && next build",
     "start": "npx serve@latest out",
     "lint": "eslint"
   },
@@ -17,6 +18,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@google-cloud/text-to-speech": "^6.4.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

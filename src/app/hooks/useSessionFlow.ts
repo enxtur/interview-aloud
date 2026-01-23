@@ -23,8 +23,8 @@ export const useSessionFlow = (topic: Topic, options: SessionOptions = {}) => {
       stop();
       return;
     }
-    speak(sentence, { rate: speechRate });
-  }, [sentence, speechRate, speak, isSpeaking, stop]);
+    speak(sentence, { rate: speechRate, topicId: topic.id });
+  }, [sentence, speechRate, speak, isSpeaking, stop, topic.id]);
 
   const next = React.useCallback(() => {
     setIndex((i) => Math.min(i + 1, topic.sentences.length - 1));
