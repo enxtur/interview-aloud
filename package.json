@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "generate:og:images": "tsx src/scripts/generate-og-images.ts",
-    "build": "npm run generate:og:images && next build",
+    "generate:speech": "tsx src/scripts/generate-speech.ts",
+    "build": "npm run generate:og:images && npm run generate:speech && next build",
     "start": "npx serve@latest out",
     "lint": "eslint"
   },
