@@ -47,7 +47,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div id="root">{children}</div>
-        <GoogleAnalytics gaId="G-31QL887KGT" />
+        {process.env.GOOGLE_ANALYTICS_ID && (
+          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
+        )}
       </body>
     </html>
   );
