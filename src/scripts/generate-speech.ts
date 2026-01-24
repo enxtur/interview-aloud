@@ -66,8 +66,6 @@ const generateSpeech = async (topic: Topic): Promise<boolean> => {
     return false;
   }
   
-  let generatedCount = 0;
-
   for (const sentence of topic.sentences) {
     // Skip empty sentences
     if (!sentence || !sentence.trim()) {
@@ -110,7 +108,6 @@ const generateSpeech = async (topic: Topic): Promise<boolean> => {
       console.log(
         `Generated speech: ${topic.id} - ${sentence.substring(0, 50)}... /public/speeches/${fileName}`,
       );
-      generatedCount++;
     } catch (error) {
       console.error(
         `Error generating speech for topic ${topic.id}, sentence: ${sentence.substring(0, 50)}...`,
