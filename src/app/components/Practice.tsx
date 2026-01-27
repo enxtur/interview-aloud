@@ -128,7 +128,6 @@ export const Practice = ({ topic }: Props) => {
         <button
           className="btn btn-primary"
           onClick={session.playCurrent}
-          disabled={session.isSpeaking}
           style={{ minWidth: "140px" }}
         >
           {session.isSpeaking ? (
