@@ -8,4 +8,6 @@ export interface Topic {
   tags: string[];
   difficulty: "easy" | "medium" | "hard";
   keywords: string[];
+  prevTopic?: Topic;
+  nextTopic?: Topic;
 }

@@ -1,6 +1,7 @@
 "use client";
-import type { Topic } from "@/app/libs/types";
 import { useSessionFlow } from "@/app/hooks/useSessionFlow";
+import type { Topic } from "@/app/libs/types";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 
@@ -32,11 +33,19 @@ export const Practice = ({ topic }: Props) => {
       if (e.code === "Escape") {
         router.push("/");
       }
+      if (topic.prevTopic && e.code === "ArrowUp") {
+        e.preventDefault();
+        router.push(`/topics/${topic.prevTopic.id}`);
+      }
+      if (topic.nextTopic && e.code === "ArrowDown") {
+        e.preventDefault();
+        router.push(`/topics/${topic.nextTopic.id}`);
+      }
     };
 
     window?.addEventListener("keydown", handler);
     return () => window?.removeEventListener("keydown", handler);
-  }, [session, router]);
+  }, [session, router, topic.prevTopic, topic.nextTopic]);
 
   return (
     <div className="card" style={{ maxWidth: "800px", margin: "0 auto" }}>
@@ -231,7 +240,229 @@ export const Practice = ({ topic }: Props) => {
           </kbd>
           Exit
         </span>
+        {(topic.prevTopic || topic.nextTopic) && (
+          <span>
+            <kbd
+              style={{
+                padding: "0.25rem 0.5rem",
+                background: "var(--color-bg-primary)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "var(--radius-sm)",
+                fontFamily: "monospace",
+                fontSize: "0.75rem",
+                marginRight: "0.5rem",
+              }}
+            >
+              ↑
+            </kbd>
+            <kbd
+              style={{
+                padding: "0.25rem 0.5rem",
+                background: "var(--color-bg-primary)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "var(--radius-sm)",
+                fontFamily: "monospace",
+                fontSize: "0.75rem",
+                marginRight: "0.5rem",
+              }}
+            >
+              ↓
+            </kbd>
+            Topics
+          </span>
+        )}
       </div>
+
+      {/* Navigation between topics */}
+      {(topic.prevTopic || topic.nextTopic) && (
+        <div
+          style={{
+            padding: "1.5rem",
+            background: "var(--color-bg-secondary)",
+            borderRadius: "var(--radius-lg)",
+            border: "1px solid var(--color-border-light)",
+            marginTop: "2rem",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "0.875rem",
+              color: "var(--color-text-secondary)",
+              fontWeight: 500,
+              marginBottom: "1rem",
+              textAlign: "center",
+            }}
+          >
+            Navigate Topics
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "1rem",
+              flexWrap: "wrap",
+            }}
+          >
+            {topic.prevTopic && (
+              <Link
+                href={`/topics/${topic.prevTopic.id}`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                  padding: "1rem",
+                  background: "var(--color-bg-primary)",
+                  borderRadius: "var(--radius-md)",
+                  border: "1px solid var(--color-border)",
+                  textDecoration: "none",
+                  color: "inherit",
+                  transition: "all var(--transition-base)",
+                  flex: 1,
+                  minWidth: 0,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--color-bg-tertiary)";
+                  e.currentTarget.style.borderColor = "var(--color-primary-light)";
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                  e.currentTarget.style.boxShadow = "var(--shadow-md)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--color-bg-primary)";
+                  e.currentTarget.style.borderColor = "var(--color-border)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontSize: "0.875rem",
+                    color: "var(--color-text-secondary)",
+                    fontWeight: 500,
+                    flexShrink: 0,
+                  }}
+                >
+                  <span style={{ fontSize: "1.25rem", lineHeight: 1 }}>↑</span>
+                </div>
+                <div
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "var(--color-text-primary)",
+                    fontWeight: 400,
+                    lineHeight: 1.4,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    flex: 1,
+                    minWidth: 0,
+                  }}
+                >
+                  {topic.prevTopic.question}
+                </div>
+              </Link>
+            )}
+            {topic.nextTopic && (
+              <Link
+                href={`/topics/${topic.nextTopic.id}`}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                  padding: "1rem",
+                  background: "var(--color-bg-primary)",
+                  borderRadius: "var(--radius-md)",
+                  border: "1px solid var(--color-border)",
+                  textDecoration: "none",
+                  color: "inherit",
+                  transition: "all var(--transition-base)",
+                  flex: 1,
+                  minWidth: 0,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--color-bg-tertiary)";
+                  e.currentTarget.style.borderColor = "var(--color-primary-light)";
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                  e.currentTarget.style.boxShadow = "var(--shadow-md)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--color-bg-primary)";
+                  e.currentTarget.style.borderColor = "var(--color-border)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontSize: "0.875rem",
+                    color: "var(--color-text-secondary)",
+                    fontWeight: 500,
+                    flexShrink: 0,
+                  }}
+                >
+                  <span style={{ fontSize: "1.25rem", lineHeight: 1 }}>↓</span>
+                </div>
+                <div
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "var(--color-text-primary)",
+                    fontWeight: 400,
+                    lineHeight: 1.4,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    flex: 1,
+                    minWidth: 0,
+                  }}
+                >
+                  {topic.nextTopic.question}
+                </div>
+              </Link>
+            )}
+          </div>
+          <div
+            style={{
+              marginTop: "1rem",
+              textAlign: "center",
+              fontSize: "0.75rem",
+              color: "var(--color-text-tertiary)",
+            }}
+          >
+            <span>
+              <kbd
+                style={{
+                  padding: "0.25rem 0.5rem",
+                  background: "var(--color-bg-primary)",
+                  border: "1px solid var(--color-border)",
+                  borderRadius: "var(--radius-sm)",
+                  fontFamily: "monospace",
+                  fontSize: "0.75rem",
+                  marginRight: "0.5rem",
+                }}
+              >
+                ↑
+              </kbd>
+              <kbd
+                style={{
+                  padding: "0.25rem 0.5rem",
+                  background: "var(--color-bg-primary)",
+                  border: "1px solid var(--color-border)",
+                  borderRadius: "var(--radius-sm)",
+                  fontFamily: "monospace",
+                  fontSize: "0.75rem",
+                }}
+              >
+                ↓
+              </kbd>
+              {" "}Keyboard
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

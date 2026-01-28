@@ -30,7 +30,7 @@ const isTopic = (data: unknown): data is Topic => {
 
 export const loadTopics = async (): Promise<Topic[]> => {
   const files = (await readdir(topicsDir)).filter((file) =>
-    file.endsWith(".md")
+    file.endsWith(".md"),
   );
 
   const topics = await Promise.all(
@@ -46,9 +46,19 @@ export const loadTopics = async (): Promise<Topic[]> => {
         difficulty: data.difficulty,
         keywords: data.keywords,
       } as unknown;
-    })
+    }),
   );
-  return topics.filter(isTopic);
+
+  let prevTopic: Topic;
+
+  return topics.filter(isTopic).map((topic) => {
+    if (prevTopic) {
+      prevTopic.nextTopic = topic;
+      topic.prevTopic = prevTopic;
+    }
+    prevTopic = topic;
+    return topic;
+  });
 };
 
 export const loadTopicMap = async (): Promise<Map<string, Topic>> => {
