@@ -12,13 +12,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const topics = await loadTopics();
   return [
     {
-      url: "https://interview-aloud.tech",
+      url: "https://www.interview-aloud.tech",
       lastModified: now,
       changeFrequency,
       priority: 1,
     },
     ...topics.map((topic) => ({
-      url: `https://interview-aloud.tech/topics/${topic.id}`,
+      url: `https://www.interview-aloud.tech/topics/${topic.id}`,
       lastModified: now,
       changeFrequency,
       priority: 0.8,
