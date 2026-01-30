@@ -8,6 +8,6 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
       userAgent: "*",
       allow: "/topics/*",
     },
-    sitemap: "https://interview-aloud.tech/sitemap.xml",
+    sitemap: "https://www.interview-aloud.tech/sitemap.xml",
   };
 }
