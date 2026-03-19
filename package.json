@@ -3,6 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.19.0",
+    "npm": ">=10.8.2"
+  },
   "scripts": {
     "dev": "next dev",
     "generate:og:images": "tsx src/scripts/generate-og-images.ts",
