@@ -31,7 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "gray-matter": "^4.0.3",
-    "satori": "^0.25.0",
+    "satori": "^0.26.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
