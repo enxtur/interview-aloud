@@ -31,13 +31,13 @@ jobs:
         run: npm ci
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@v4.37.3
         with:
           languages: javascript # Includes TypeScript/React projects
           queries: security-and-quality
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@v4 # For compiled languages, attempts to build the project
+        uses: github/codeql-action/autobuild@v4.37.3 # For compiled languages, attempts to build the project
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
+        uses: github/codeql-action/analyze@v4.37.3
